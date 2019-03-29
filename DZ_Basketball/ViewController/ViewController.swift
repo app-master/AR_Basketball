@@ -12,13 +12,13 @@ class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    var hoopExists = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Set the view's delegate
         sceneView.delegate = self
         
-        // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
         
         addGesture()
@@ -28,23 +28,20 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
         
         configuration.planeDetection = .vertical
 
-        // Run the view's session
         sceneView.session.run(configuration)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        // Pause the view's session
         sceneView.session.pause()
     }
     
-    // MARK: --Methods
+    // MARK: - Gesture
     
     func addGesture() {
         
@@ -60,16 +57,50 @@ class ViewController: UIViewController {
     
     @objc func handleTap(gesture: UITapGestureRecognizer) {
         
-        let location = gesture.location(in: sceneView)
-        let results: [ARHitTestResult] = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
-        guard let result = results.first else { return }
-        guard let _ = result.anchor as? ARPlaneAnchor else { return }
+        if !hoopExists {
+            let location = gesture.location(in: sceneView)
+            let results: [ARHitTestResult] = sceneView.hitTest(location, types: .existingPlaneUsingExtent)
+            guard let result = results.first else { return }
+            guard let _ = result.anchor as? ARPlaneAnchor else { return }
+            
+            sceneView.scene.rootNode.enumerateChildNodes { node, _ in
+                if node.name == "plane" {
+                    node.removeFromParentNode()
+                }
+            }
+            
+            hoopExists = true
+            sceneView.scene.rootNode.addChildNode(loadHoop(on: result))
+        } else {
+            guard let transform = sceneView.session.currentFrame?.camera.transform else { return }
+            let ball = Ball(transform: transform)
+            sceneView.scene.rootNode.addChildNode(ball)
+        }
         
+    }
+    
+    @objc func handleDoubleTap(gesture: UITapGestureRecognizer) {
+
         sceneView.scene.rootNode.enumerateChildNodes { node, _ in
-            if node.name == "Plane" {
+            if (node.name == "hoop") || (node.name == "ball")  {
                 node.removeFromParentNode()
             }
         }
+        
+        hoopExists = false
+        
+        guard let anchors = sceneView.session.currentFrame?.anchors else { return }
+        
+        for ancor in anchors {
+            sceneView.session.remove(anchor: ancor)
+        }
+        
+        
+    }
+    
+    // MARK: - Methods
+    
+    func loadHoop(on result: ARHitTestResult) -> SCNNode {
         
         let hoopScene = SCNScene(named: "art.scnassets/hoop.scn")!
         let hoopNode = hoopScene.rootNode.childNode(withName: "hoop", recursively: false)!
@@ -77,17 +108,13 @@ class ViewController: UIViewController {
         hoopNode.scale = SCNVector3(0.5, 0.5, 0.5)
         hoopNode.eulerAngles.x -= .pi / 2
         
-        sceneView.scene.rootNode.addChildNode(hoopNode)
-    }
-    
-    @objc func handleDoubleTap(gesture: UITapGestureRecognizer) {
-
-        sceneView.scene.rootNode.enumerateChildNodes { node, _ in
-            if node.name == "hoop" {
-                node.removeFromParentNode()
-            }
-        }
+        let phisicsShape = SCNPhysicsShape(node: hoopNode, options: [
+            SCNPhysicsShape.Option.type : SCNPhysicsShape.ShapeType.concavePolyhedron,
+            SCNPhysicsShape.Option.collisionMargin : 0.01
+            ])
+        hoopNode.physicsBody = SCNPhysicsBody(type: .static, shape: phisicsShape)
         
+        return hoopNode
     }
     
 }

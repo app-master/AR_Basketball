@@ -14,20 +14,10 @@ extension ViewController: ARSCNViewDelegate {
         
         if let anchor = anchor as? ARPlaneAnchor {
             
-            var existHoop = false
-            
-            sceneView.scene.rootNode.enumerateChildNodes { node, _ in
-                if node.name == "hoop" {
-                    existHoop = true
-                }
-            }
-            
-            if (!existHoop) {
+            if !hoopExists {
                 node.addChildNode(Plane(anchor: anchor))
-            }
-            
+            } 
         }
-        
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {

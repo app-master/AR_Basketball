@@ -28,7 +28,7 @@ class Plane: SCNNode {
         planeGeometry.firstMaterial?.diffuse.contents = UIColor.blue
         geometry = planeGeometry
         opacity = 0.25
-        name = "Plane"
+        name = "plane"
         eulerAngles.x = -.pi / 2
         position = SCNVector3(anchor.center.x, 0, anchor.center.z)
         

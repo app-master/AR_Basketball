@@ -7,21 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CE468723224E800900649B17 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE468722224E800900649B17 /* Ball.swift */; };
 		CEE08C32224CCA14007CB005 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE08C31224CCA14007CB005 /* AppDelegate.swift */; };
 		CEE08C34224CCA14007CB005 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C33224CCA14007CB005 /* art.scnassets */; };
 		CEE08C36224CCA14007CB005 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE08C35224CCA14007CB005 /* ViewController.swift */; };
 		CEE08C39224CCA14007CB005 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C37224CCA14007CB005 /* Main.storyboard */; };
 		CEE08C3B224CCA16007CB005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C3A224CCA16007CB005 /* Assets.xcassets */; };
 		CEE08C3E224CCA16007CB005 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C3C224CCA16007CB005 /* LaunchScreen.storyboard */; };
-		CEE08C48224CCC03007CB005 /* streakedmetal-albedo.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C45224CCC03007CB005 /* streakedmetal-albedo.png */; };
-		CEE08C49224CCC03007CB005 /* streakedmetal-roughness.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C46224CCC03007CB005 /* streakedmetal-roughness.png */; };
-		CEE08C4A224CCC03007CB005 /* streakedmetal-metalness.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C47224CCC03007CB005 /* streakedmetal-metalness.png */; };
-		CEE08C4E224CD8E0007CB005 /* hoop.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE08C4D224CD8DD007CB005 /* hoop.png */; };
 		CEE08C50224D00A8007CB005 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE08C4F224D00A8007CB005 /* Plane.swift */; };
 		CEE08C52224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE08C51224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift */; };
+		CEE3A295224E9F1800DD08FC /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE3A294224E9F1700DD08FC /* ball.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CE468722224E800900649B17 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		CEE08C2E224CCA14007CB005 /* DZ_Basketball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DZ_Basketball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEE08C31224CCA14007CB005 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEE08C33224CCA14007CB005 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -30,12 +29,9 @@
 		CEE08C3A224CCA16007CB005 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CEE08C3D224CCA16007CB005 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CEE08C3F224CCA16007CB005 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CEE08C45224CCC03007CB005 /* streakedmetal-albedo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streakedmetal-albedo.png"; sourceTree = "<group>"; };
-		CEE08C46224CCC03007CB005 /* streakedmetal-roughness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streakedmetal-roughness.png"; sourceTree = "<group>"; };
-		CEE08C47224CCC03007CB005 /* streakedmetal-metalness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "streakedmetal-metalness.png"; sourceTree = "<group>"; };
-		CEE08C4D224CD8DD007CB005 /* hoop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hoop.png; sourceTree = "<group>"; };
 		CEE08C4F224D00A8007CB005 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		CEE08C51224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ARSCNViewDelegate.swift"; sourceTree = "<group>"; };
+		CEE3A294224E9F1700DD08FC /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +66,9 @@
 			children = (
 				CEE08C31224CCA14007CB005 /* AppDelegate.swift */,
 				CEE08C4F224D00A8007CB005 /* Plane.swift */,
+				CE468722224E800900649B17 /* Ball.swift */,
+				CEE3A294224E9F1700DD08FC /* ball.png */,
 				CEE08C53224D1198007CB005 /* ViewController */,
-				CEE08C54224D11C4007CB005 /* Textures */,
 				CEE08C33224CCA14007CB005 /* art.scnassets */,
 				CEE08C37224CCA14007CB005 /* Main.storyboard */,
 				CEE08C3A224CCA16007CB005 /* Assets.xcassets */,
@@ -88,17 +85,6 @@
 				CEE08C51224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		CEE08C54224D11C4007CB005 /* Textures */ = {
-			isa = PBXGroup;
-			children = (
-				CEE08C45224CCC03007CB005 /* streakedmetal-albedo.png */,
-				CEE08C47224CCC03007CB005 /* streakedmetal-metalness.png */,
-				CEE08C46224CCC03007CB005 /* streakedmetal-roughness.png */,
-				CEE08C4D224CD8DD007CB005 /* hoop.png */,
-			);
-			path = Textures;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -160,13 +146,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEE08C34224CCA14007CB005 /* art.scnassets in Resources */,
-				CEE08C4E224CD8E0007CB005 /* hoop.png in Resources */,
+				CEE3A295224E9F1800DD08FC /* ball.png in Resources */,
 				CEE08C3E224CCA16007CB005 /* LaunchScreen.storyboard in Resources */,
-				CEE08C4A224CCC03007CB005 /* streakedmetal-metalness.png in Resources */,
 				CEE08C3B224CCA16007CB005 /* Assets.xcassets in Resources */,
-				CEE08C48224CCC03007CB005 /* streakedmetal-albedo.png in Resources */,
 				CEE08C39224CCA14007CB005 /* Main.storyboard in Resources */,
-				CEE08C49224CCC03007CB005 /* streakedmetal-roughness.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +162,7 @@
 			files = (
 				CEE08C52224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift in Sources */,
 				CEE08C36224CCA14007CB005 /* ViewController.swift in Sources */,
+				CE468723224E800900649B17 /* Ball.swift in Sources */,
 				CEE08C50224D00A8007CB005 /* Plane.swift in Sources */,
 				CEE08C32224CCA14007CB005 /* AppDelegate.swift in Sources */,
 			);
@@ -329,6 +313,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5NAELVG29J;
 				INFOPLIST_FILE = DZ_Basketball/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -347,6 +332,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5NAELVG29J;
 				INFOPLIST_FILE = DZ_Basketball/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
