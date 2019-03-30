@@ -12,6 +12,8 @@ class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
     
+    var player: AVAudioPlayer?
+    
     var hoopExists = false
     
     override func viewDidLoad() {
@@ -71,10 +73,27 @@ class ViewController: UIViewController {
             
             hoopExists = true
             sceneView.scene.rootNode.addChildNode(loadHoop(on: result))
+            sceneView.scene.rootNode.addChildNode(loadTopPlane(on: result))
+            sceneView.scene.rootNode.addChildNode(loadBottomPlane(on: result))
         } else {
             guard let transform = sceneView.session.currentFrame?.camera.transform else { return }
             let ball = Ball(transform: transform)
             sceneView.scene.rootNode.addChildNode(ball)
+            
+            
+            
+            let path = Bundle.main.path(forResource: "basketball-net-swoosh_f1bfjtvd", ofType: "mp3")
+            let url = URL(fileURLWithPath: path ?? "")
+            
+            do {
+                player = try AVAudioPlayer(contentsOf: url)
+                player?.play()
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            
+            
+            
         }
         
     }
@@ -103,10 +122,10 @@ class ViewController: UIViewController {
     func loadHoop(on result: ARHitTestResult) -> SCNNode {
         
         let hoopScene = SCNScene(named: "art.scnassets/hoop.scn")!
+        
         let hoopNode = hoopScene.rootNode.childNode(withName: "hoop", recursively: false)!
-        hoopNode.simdTransform = result.worldTransform
-        hoopNode.scale = SCNVector3(0.5, 0.5, 0.5)
-        hoopNode.eulerAngles.x -= .pi / 2
+        
+        configureHoopNode(hoopNode, for: result)
         
         let phisicsShape = SCNPhysicsShape(node: hoopNode, options: [
             SCNPhysicsShape.Option.type : SCNPhysicsShape.ShapeType.concavePolyhedron,
@@ -117,4 +136,30 @@ class ViewController: UIViewController {
         return hoopNode
     }
     
+    func loadTopPlane(on result: ARHitTestResult) -> SCNNode {
+    
+        let hoopScene = SCNScene(named: "art.scnassets/hoop.scn")!
+        let topPlane = hoopScene.rootNode.childNode(withName: "topPlane", recursively: false)!
+        
+        configureHoopNode(topPlane, for: result)
+        
+        return topPlane
+    }
+    
+    func loadBottomPlane(on result: ARHitTestResult) -> SCNNode {
+        
+        let hoopScene = SCNScene(named: "art.scnassets/hoop.scn")!
+        let bottomPlane = hoopScene.rootNode.childNode(withName: "bottomPlane", recursively: false)!
+        
+        configureHoopNode(bottomPlane, for: result)
+        
+        return bottomPlane
+    }
+    
+    func configureHoopNode(_ node: SCNNode, for result: ARHitTestResult) {
+        node.simdTransform = result.worldTransform
+        node.scale = SCNVector3(0.5, 0.5, 0.5)
+        node.eulerAngles.x -= .pi / 2
+    }
+        
 }

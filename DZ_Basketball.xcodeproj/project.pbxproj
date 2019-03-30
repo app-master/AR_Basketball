@@ -17,6 +17,7 @@
 		CEE08C50224D00A8007CB005 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE08C4F224D00A8007CB005 /* Plane.swift */; };
 		CEE08C52224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE08C51224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift */; };
 		CEE3A295224E9F1800DD08FC /* ball.png in Resources */ = {isa = PBXBuildFile; fileRef = CEE3A294224E9F1700DD08FC /* ball.png */; };
+		CEE3A297224ED42300DD08FC /* basketball-net-swoosh_f1bfjtvd.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEE3A296224ED42200DD08FC /* basketball-net-swoosh_f1bfjtvd.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		CEE08C4F224D00A8007CB005 /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
 		CEE08C51224D06C1007CB005 /* ViewController+ARSCNViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+ARSCNViewDelegate.swift"; sourceTree = "<group>"; };
 		CEE3A294224E9F1700DD08FC /* ball.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ball.png; sourceTree = "<group>"; };
+		CEE3A296224ED42200DD08FC /* basketball-net-swoosh_f1bfjtvd.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "basketball-net-swoosh_f1bfjtvd.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				CEE08C4F224D00A8007CB005 /* Plane.swift */,
 				CE468722224E800900649B17 /* Ball.swift */,
 				CEE3A294224E9F1700DD08FC /* ball.png */,
+				CEE3A296224ED42200DD08FC /* basketball-net-swoosh_f1bfjtvd.mp3 */,
 				CEE08C53224D1198007CB005 /* ViewController */,
 				CEE08C33224CCA14007CB005 /* art.scnassets */,
 				CEE08C37224CCA14007CB005 /* Main.storyboard */,
@@ -150,6 +153,7 @@
 				CEE08C3E224CCA16007CB005 /* LaunchScreen.storyboard in Resources */,
 				CEE08C3B224CCA16007CB005 /* Assets.xcassets in Resources */,
 				CEE08C39224CCA14007CB005 /* Main.storyboard in Resources */,
+				CEE3A297224ED42300DD08FC /* basketball-net-swoosh_f1bfjtvd.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
