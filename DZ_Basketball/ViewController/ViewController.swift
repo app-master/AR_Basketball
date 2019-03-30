@@ -11,19 +11,27 @@ import ARKit
 class ViewController: UIViewController {
 
     @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var scoreLabel: UILabel!
     
     var player: AVAudioPlayer?
     
     var hoopExists = false
     
+    var goal = BitMask.none
+    
+    var score = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         sceneView.delegate = self
+        sceneView.scene.physicsWorld.contactDelegate = self
         
         sceneView.showsStatistics = true
         
         addGesture()
+        
+        setupThrowPower(5.0)
         
     }
     
@@ -76,13 +84,13 @@ class ViewController: UIViewController {
             sceneView.scene.rootNode.addChildNode(loadTopPlane(on: result))
             sceneView.scene.rootNode.addChildNode(loadBottomPlane(on: result))
         } else {
+            goal = BitMask.none
             guard let transform = sceneView.session.currentFrame?.camera.transform else { return }
             let ball = Ball(transform: transform)
             sceneView.scene.rootNode.addChildNode(ball)
             
-            
-            
-            let path = Bundle.main.path(forResource: "basketball-net-swoosh_f1bfjtvd", ofType: "mp3")
+            player?.stop()
+            let path = Bundle.main.path(forResource: "throw", ofType: "mp3")
             let url = URL(fileURLWithPath: path ?? "")
             
             do {
@@ -92,8 +100,6 @@ class ViewController: UIViewController {
                 print(error.localizedDescription)
             }
             
-            
-            
         }
         
     }
@@ -101,9 +107,12 @@ class ViewController: UIViewController {
     @objc func handleDoubleTap(gesture: UITapGestureRecognizer) {
 
         sceneView.scene.rootNode.enumerateChildNodes { node, _ in
-            if (node.name == "hoop") || (node.name == "ball")  {
+
+            if (node.name == "hoop") || (node.name == "ball") ||
+                (node.name == "topPlane") || (node.name == "bottomPlane") {
                 node.removeFromParentNode()
             }
+            
         }
         
         hoopExists = false
@@ -132,6 +141,7 @@ class ViewController: UIViewController {
             SCNPhysicsShape.Option.collisionMargin : 0.01
             ])
         hoopNode.physicsBody = SCNPhysicsBody(type: .static, shape: phisicsShape)
+        hoopNode.physicsBody?.categoryBitMask = BitMask.hoop
         
         return hoopNode
     }
@@ -143,6 +153,12 @@ class ViewController: UIViewController {
         
         configureHoopNode(topPlane, for: result)
         
+        topPlane.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: topPlane, options: [
+            SCNPhysicsShape.Option.collisionMargin : 0.001
+            ]))
+        
+        topPlane.physicsBody?.categoryBitMask = BitMask.topPlane
+        
         return topPlane
     }
     
@@ -153,6 +169,12 @@ class ViewController: UIViewController {
         
         configureHoopNode(bottomPlane, for: result)
         
+        bottomPlane.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: bottomPlane, options: [
+            SCNPhysicsShape.Option.collisionMargin : 0.001
+            ]))
+        
+        bottomPlane.physicsBody?.categoryBitMask = BitMask.bottomPlane
+        
         return bottomPlane
     }
     
@@ -161,5 +183,16 @@ class ViewController: UIViewController {
         node.scale = SCNVector3(0.5, 0.5, 0.5)
         node.eulerAngles.x -= .pi / 2
     }
+    
+    // MARK: - Actions
         
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+       setupThrowPower(sender.value)
+    }
+    
+    func setupThrowPower(_ power: Float) {
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(power, forKey: "Power")
+        userDefaults.synchronize()
+    }
 }

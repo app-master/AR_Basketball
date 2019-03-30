@@ -24,8 +24,14 @@ class Ball: SCNNode {
             SCNPhysicsShape.Option.collisionMargin : 0.01
             ])
         physicsBody = SCNPhysicsBody(type: .dynamic, shape: phisicsShape)
+        physicsBody?.categoryBitMask = BitMask.ball
+        physicsBody?.collisionBitMask =  BitMask.hoop
+        physicsBody?.contactTestBitMask = BitMask.topPlane | BitMask.bottomPlane 
         
-        let power = Float(10)
+        let userDefault = UserDefaults.standard
+        userDefault.float(forKey: "Power")
+        
+        let power = userDefault.float(forKey: "Power")
         
         let direction = SCNVector3(x: -transform.columns.2.x * power, y: -transform.columns.2.y * power, z: -transform.columns.2.z * power)
         physicsBody?.applyForce(direction, asImpulse: true)
